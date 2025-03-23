@@ -14,10 +14,13 @@ abstract class IHomeViewModel extends ChangeNotifier {
 /// En este caso, aún no tenemos estado, pero ya dejamos lista la estructura.
 
 class HomeViewModel extends IHomeViewModel {
-  // Este método simula lo que haríamos cuando se toca el botón "Iniciar partida"
-  // Más adelante podríamos notificar a un coordinador o cambiar el estado de la app.
-  @override // Necesario solo porque necesitamos que
+  final void Function() onStartGame;
+
+  HomeViewModel({required this.onStartGame});
+
+  @override // Necesario dado que no estamos implementando sino extendiendo
   void startGame() {
-    debugPrint('HOME VIEWMODEL: (startGame)');
+    debugPrint("Inicio de partida");
+    onStartGame(); // 👈 delegamos la navegación
   }
 }
