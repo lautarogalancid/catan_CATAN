@@ -1,13 +1,12 @@
+import 'package:catan_catan/features/setup/model/game_settings.dart';
 import 'package:flutter/material.dart';
 import '../../scoreboard/view/scoreboard_screen.dart';
 
 class ScoreboardCoordinator {
-  // En el futuro podrías inyectar jugadores, settings, etc.
-  // final List<Player> jugadores;
-
-  // ScoreboardCoordinator(this.jugadores);
+  final GameSettings settings;
+  ScoreboardCoordinator({required this.settings});
 
   Widget build() {
-    return const ScoreboardScreen();
+    return ScoreboardScreen(settings: settings);
   }
 }

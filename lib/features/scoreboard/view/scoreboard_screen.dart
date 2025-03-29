@@ -1,8 +1,13 @@
+import 'package:catan_catan/features/setup/model/game_settings.dart';
 import 'package:flutter/material.dart';
 
 class ScoreboardScreen extends StatelessWidget {
-  const ScoreboardScreen({super.key});
+  // PARAMETROS
+  final GameSettings settings;
+  // INIT
+  const ScoreboardScreen({required this.settings, super.key});
 
+  // IMPLEMENTACION
   @override
   Widget build(BuildContext context) {
     // Obtenemos el "navigator" antes de cualquier await
@@ -46,8 +51,17 @@ class ScoreboardScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Marcador'),
         ),
-        body: const Center(
-          child: Text('Aquí irá el marcador 🧮'),
+        body: ListView.builder(
+          padding: const EdgeInsets.all(16),
+          itemCount: settings.playerColors.length,
+          itemBuilder: (_, index) {
+            final color = settings.playerColors[index];
+            return ListTile(
+              leading: CircleAvatar(backgroundColor: color.color),
+              title: Text(color.label),
+              subtitle: const Text('Puntos: 2'),
+            );
+          },
         ),
       ),
     );

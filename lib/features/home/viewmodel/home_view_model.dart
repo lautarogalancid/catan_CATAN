@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../setup/model/game_settings.dart';
+
 // Interfaz que extiende de change notifier para poder ser usado en PROVIDER.
 abstract class IHomeViewModel extends ChangeNotifier {
-  void startGame();
+  void startGame(GameSettings settings);
 }
 
 /// ViewModel de la pantalla Home.
@@ -14,13 +16,11 @@ abstract class IHomeViewModel extends ChangeNotifier {
 /// En este caso, aún no tenemos estado, pero ya dejamos lista la estructura.
 
 class HomeViewModel extends IHomeViewModel {
-  final void Function() onStartGame;
-
+  final void Function(GameSettings settings) onStartGame;
   HomeViewModel({required this.onStartGame});
 
-  @override // Necesario dado que no estamos implementando sino extendiendo
-  void startGame() {
-    debugPrint("Inicio de partida");
-    onStartGame(); // 👈 delegamos la navegación
+  @override
+  void startGame(GameSettings settings) {
+    onStartGame(settings);
   }
 }
