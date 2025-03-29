@@ -16,7 +16,9 @@ abstract class IHomeViewModel extends ChangeNotifier {
 /// En este caso, aún no tenemos estado, pero ya dejamos lista la estructura.
 
 class HomeViewModel extends IHomeViewModel {
+  // Metodo parametro
   final void Function(GameSettings settings) onStartGame;
+
   HomeViewModel({required this.onStartGame});
 
   @override

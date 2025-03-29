@@ -18,6 +18,11 @@ class GameSetupViewModel extends ChangeNotifier {
     if (_numberOfPlayers < 6) {
       _numberOfPlayers++;
       _selectedColors.clear();
+
+      if (_numberOfPlayers == 6) {
+        _selectedColors.addAll(allColors); // Si son 6 elegimos todos
+      }
+
       notifyListeners();
     }
   }

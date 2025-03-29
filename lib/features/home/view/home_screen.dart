@@ -1,3 +1,4 @@
+import 'package:catan_catan/features/home/viewmodel/home_view_model.dart';
 import 'package:catan_catan/features/scoreboard/coordinator/scoreboard_coordinator.dart';
 import 'package:catan_catan/features/setup/view/game_setup_view.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,7 @@ class _HomeScreenContent extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Accede a su VM por medio del contexto. Este ya se creo en el build de la clase HomeScreen.
             const GameSetupView(),
             const SizedBox(height: 24),
             Center(
@@ -46,11 +48,8 @@ class _HomeScreenContent extends StatelessWidget {
                       );
                       return;
                     }
-                    final coordinator = ScoreboardCoordinator(settings: settings);
-                    Navigator.of(context).push(
-                      MaterialPageRoute(builder: (_) => coordinator.build(),
-                      )
-                    );
+                    // Llamamos al VM para que haga lo que sea que tenga que hacer durante start game.
+                    context.read<IHomeViewModel>().startGame(settings);
                   }, child: const Text('Iniciar partida')),
             )
           ],
