@@ -1,3 +1,4 @@
+import 'package:catan_catan/features/scoreboard/view/scoreboard_body.dart';
 import 'package:catan_catan/features/setup/model/game_settings.dart';
 import 'package:flutter/material.dart';
 
@@ -10,11 +11,11 @@ class ScoreboardScreen extends StatelessWidget {
   // IMPLEMENTACION
   @override
   Widget build(BuildContext context) {
-    // Obtenemos el "navigator" antes de cualquier await
+    // Obtenemos el "navigator" antes de cualquier await / Para que era esto?
     final navigator = Navigator.of(context, rootNavigator: true);
     return PopScope(
       canPop: false, // esto es para poder interceptar el popeo, si es true, se hace automaticamente.
-      // ignore: deprecated_member_use ~ TODO: Fix later
+      // ignore: deprecated_member_use ~ TODO: Fix later / Esto intercepta el evento de popeo, no deberia ir al VM?
       onPopInvoked: (didPop) async {
         if (!didPop) {
           // Mostramos el diálogo con 'showDialog', usando context
@@ -51,18 +52,7 @@ class ScoreboardScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Marcador'),
         ),
-        body: ListView.builder(
-          padding: const EdgeInsets.all(16),
-          itemCount: settings.playerColors.length,
-          itemBuilder: (_, index) {
-            final color = settings.playerColors[index];
-            return ListTile(
-              leading: CircleAvatar(backgroundColor: color.color),
-              title: Text(color.label),
-              subtitle: const Text('Puntos: 2'),
-            );
-          },
-        ),
+        body: ScoreboardBody(playerColors: settings.playerColors)
       ),
     );
   }
