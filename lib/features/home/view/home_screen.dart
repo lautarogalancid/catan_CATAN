@@ -53,9 +53,7 @@ class _HomeScreenContent extends StatelessWidget {
                     );
                   }, child: const Text('Iniciar partida')),
             )
-
           ],
-
         ),
       )
     );

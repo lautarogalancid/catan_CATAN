@@ -13,9 +13,11 @@ class AppCoordinator extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<IHomeViewModel>(
       create: (_) => HomeViewModel(
+        // Este settings es un placeholder para quien llame al metodo este mas adelante, solo pasamos el metodo.
       onStartGame: (settings) {
         final coordinator = ScoreboardCoordinator(settings: settings);
         Navigator.of(context).push(
+          // Es una suerte de NavigationLink o pushViewController, le estamos pasando esta funcion privada por parametro
           MaterialPageRoute(builder: (_) => coordinator.build()),
         );
       }
