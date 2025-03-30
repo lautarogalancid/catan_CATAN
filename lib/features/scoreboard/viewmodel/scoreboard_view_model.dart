@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/widgets.dart';
 
 import '../../setup/model/game_settings.dart';
@@ -12,6 +14,7 @@ abstract class IScoreboardViewModel extends ChangeNotifier {
 
   PlayerColor? get routeOwner;
   PlayerColor? get armyOwner;
+  String get formattedTime;
 }
 
 class ScoreboardViewModel extends IScoreboardViewModel {
@@ -19,10 +22,14 @@ class ScoreboardViewModel extends IScoreboardViewModel {
   PlayerColor? _routeOwner;
   PlayerColor? _armyOwner;
 
+  Timer? _timer;
+  Duration _elapsedTime = Duration.zero;
+
   ScoreboardViewModel(GameSettings settings) {
     for (final color in settings.playerColors) {
       _scores[color] = 2;
     }
+    _startTimer();
   }
 
   @override
@@ -83,8 +90,31 @@ class ScoreboardViewModel extends IScoreboardViewModel {
     notifyListeners();
   }
 
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  String get formattedTime {
+    final hours = _elapsedTime.inHours.toString().padLeft(2,'0');
+    final mins = _elapsedTime.inMinutes.remainder(60).toString().padLeft(2,'0');
+    final secs = _elapsedTime.inSeconds.remainder(60).toString().padLeft(2,'0');
+    return '$hours:$mins:$secs';
+  }
+
+  // Private
   void _safeDecrement(PlayerColor color) {
     final current = getScore(color);
     _scores[color] = (current > 3) ? current - 2 :  2;
   }
+
+  void _startTimer() {
+    _timer = Timer.periodic(const Duration(seconds: 1), (_) {
+      _elapsedTime += const Duration(seconds: 1);
+      notifyListeners();
+    });
+  }
+
 }

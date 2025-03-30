@@ -56,7 +56,17 @@ class ScoreboardScreen extends StatelessWidget {
         },
         child: Scaffold(
             appBar: AppBar(
-              title: const Text('Marcador'),
+              title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Marcador'),
+                  Consumer<IScoreboardViewModel>( builder: (_, vm, __) {
+                    return Text(
+                      vm.formattedTime, style: const TextStyle(fontSize: 16),
+                    );
+                  },
+                  )
+                ],
+              )
             ),
             body: ScoreboardBody(playerColors: settings.playerColors)
         ),
