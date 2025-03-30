@@ -9,6 +9,9 @@ abstract class IScoreboardViewModel extends ChangeNotifier {
   void decrease(PlayerColor color);
   void toggleRoute(PlayerColor color);
   void toggleArmy(PlayerColor color);
+
+  PlayerColor? get routeOwner;
+  PlayerColor? get armyOwner;
 }
 
 class ScoreboardViewModel extends IScoreboardViewModel {
@@ -22,6 +25,7 @@ class ScoreboardViewModel extends IScoreboardViewModel {
     }
   }
 
+  @override
   int getScore(PlayerColor color) {
     return _scores[color] ?? 666;
   }
@@ -44,7 +48,9 @@ class ScoreboardViewModel extends IScoreboardViewModel {
     notifyListeners();
   }
 
+  @override
   PlayerColor? get routeOwner => _routeOwner;
+  @override
   PlayerColor? get armyOwner => _armyOwner;
 
   @override
