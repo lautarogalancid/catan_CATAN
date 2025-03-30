@@ -28,7 +28,7 @@ class _HomeScreenContent extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Catan, Catan!'),
+        title: const Text('Catan, CATAN!'),
       ),
       body: Padding(padding: const EdgeInsets.all(16),
         child: Column( crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +53,7 @@ class _HomeScreenContent extends StatelessWidget {
             ),
             const Spacer(),
             const Padding(padding: EdgeInsets.only(bottom: 8),
-              child: Text('by Lautaro Galan Cid @kautaron\nTodos los derechos reservados,\ny los izquierdos en el baúl del Falcon 🚗',
+              child: Text('por Lautaro Galan Cid git:lautarogalancid - @kautaron',
                 textAlign: TextAlign.left,
                 style: TextStyle(fontSize: 12, color: Colors.grey)),
             )

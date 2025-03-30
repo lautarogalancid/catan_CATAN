@@ -10,32 +10,44 @@ class GameSetupView extends StatelessWidget {
     final viewModel = context.watch<GameSetupViewModel>(); // watch esta escuchando cambios, al haber un notifyObservers() se redibuja este widget
 
     return Column( // Esto es un VSTACK
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const Text(
           'Jugadores:',
           style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 8), // Esto es un Spacer()
-        Row( // esto es un HSTACK
-          children: [
-            IconButton(
-              icon: const Icon(Icons.remove),
-              onPressed: viewModel.numberOfPlayers > 2
-                  ? viewModel.decreasePlayers
-                  : null,
-            ),
-            Text(
-              '${viewModel.numberOfPlayers}',
-              style: const TextStyle(fontSize: 18),
-            ),
-            IconButton(
-              icon: const Icon(Icons.add),
-              onPressed: viewModel.numberOfPlayers < 6
-                  ? viewModel.incrementPlayers
-                  : null,
-            ),
-          ],
+        Center(
+          child: Row( // Esto es como un HSTACK
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(child:
+              SizedBox(width: 48, height: 48,
+                  child: IconButton(
+                    icon: const Icon(Icons.remove),
+                    onPressed: viewModel.numberOfPlayers > 2
+                        ? viewModel.decreasePlayers
+                        : null,
+                  )
+              ),
+              ),
+              Text(
+                '${viewModel.numberOfPlayers}',
+                style: const TextStyle(fontSize: 48),
+              ),
+              Expanded(child:
+              SizedBox(width: 48, height: 48,
+                child: IconButton(
+                  icon: const Icon(Icons.add),
+                  onPressed: viewModel.numberOfPlayers < 6
+                      ? viewModel.incrementPlayers
+                      : null,
+                ),
+              )
+              ),
+
+            ],
+          ),
         ),
         const SizedBox(height: 16),
         const Text(
