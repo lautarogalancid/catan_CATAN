@@ -31,8 +31,7 @@ class _HomeScreenContent extends StatelessWidget {
         title: const Text('Catan, Catan!'),
       ),
       body: Padding(padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column( crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Accede a su VM por medio del contexto. Este ya se creo en el build de la clase HomeScreen.
             const GameSetupView(),
@@ -51,6 +50,12 @@ class _HomeScreenContent extends StatelessWidget {
                     // Llamamos al VM para que haga lo que sea que tenga que hacer durante start game.
                     context.read<IHomeViewModel>().startGame(settings);
                   }, child: const Text('Iniciar partida')),
+            ),
+            const Spacer(),
+            const Padding(padding: EdgeInsets.only(bottom: 8),
+              child: Text('by Lautaro Galan Cid @kautaron\nTodos los derechos reservados,\ny los izquierdos en el baúl del Falcon 🚗',
+                textAlign: TextAlign.left,
+                style: TextStyle(fontSize: 12, color: Colors.grey)),
             )
           ],
         ),
