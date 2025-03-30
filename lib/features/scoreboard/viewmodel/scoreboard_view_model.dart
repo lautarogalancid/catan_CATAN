@@ -56,11 +56,21 @@ class ScoreboardViewModel extends IScoreboardViewModel {
   @override
   void toggleRoute(PlayerColor color) {
     if (_routeOwner == color) {
-      _scores[color] = getScore(color) - 2;
+      final current = getScore(color);
+      if (current > 3) {
+        _scores[color] = getScore(color) - 2;
+      } else {
+        _scores[color] = 2;
+      }
       _routeOwner = null;
     } else {
       if (_routeOwner != null) {
-        _scores[_routeOwner!] = getScore(_routeOwner!) -2; // safe unwrap mejor?
+        final current = getScore(_routeOwner!);
+        if (current > 3) {
+          _scores[_routeOwner!] = getScore(_routeOwner!) -2; // safe unwrap mejor?
+        } else {
+          _scores[_routeOwner!] = 2;
+        }
       }
       _routeOwner = color;
       _scores[color] = getScore(color) + 2;
@@ -71,11 +81,21 @@ class ScoreboardViewModel extends IScoreboardViewModel {
   @override
   void toggleArmy(PlayerColor color) {
     if (_armyOwner == color) {
-      _scores[color] = getScore(color) - 2;
+      final current = getScore(color);
+      if (current > 3) {
+        _scores[color] = getScore(color) - 2;
+      } else {
+        _scores[color] = 2;
+      }
       _armyOwner = null;
     } else {
       if (_armyOwner != null) {
-        _scores[_armyOwner!] = getScore(_armyOwner!) -2; // safe unwrap mejor?
+        final current = getScore(_armyOwner!);
+        if (current > 3) {
+          _scores[_armyOwner!] = getScore(_armyOwner!) -2; // safe unwrap mejor?
+        } else {
+          _scores[_armyOwner!] = 2;
+        }
       }
       _armyOwner = color;
       _scores[color] = getScore(color) + 2;

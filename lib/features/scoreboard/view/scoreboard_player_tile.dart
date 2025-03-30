@@ -43,7 +43,7 @@ class ScoreboardPlayerTile extends StatelessWidget {
                     fillColor: isRouteOwner ? Colors.purple.shade300 : Colors.transparent,
                     shape: const CircleBorder(),
                     constraints: const BoxConstraints.tightFor(width: 40, height: 40),
-                    child: const Icon(Icons.alt_route),
+                    child: const Icon(Icons.route),
                     onPressed: () => viewModel.toggleRoute(color)),
                 const SizedBox(width: 16),
                 RawMaterialButton(
