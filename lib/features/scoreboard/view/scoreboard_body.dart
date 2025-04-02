@@ -8,6 +8,7 @@ class ScoreboardBody extends StatelessWidget {
 
   const ScoreboardBody({required this.playerColors, super.key});
 
+  @override
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.all(16),

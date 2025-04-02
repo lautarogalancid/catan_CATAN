@@ -1,5 +1,4 @@
 import 'package:catan_catan/features/home/viewmodel/home_view_model.dart';
-import 'package:catan_catan/features/scoreboard/coordinator/scoreboard_coordinator.dart';
 import 'package:catan_catan/features/setup/view/game_setup_view.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +19,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class _HomeScreenContent extends StatelessWidget {
-  const _HomeScreenContent({super.key});
+  const _HomeScreenContent();
 
   @override
   Widget build(BuildContext context) {
